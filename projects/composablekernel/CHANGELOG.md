@@ -18,6 +18,8 @@ Documentation for Composable Kernel available at [https://rocm.docs.amd.com/proj
 
 ### Resolved issues
 
+* Fixed CK `DevicePool3dFwd_NDHWC_NDHWC` dropping output stores when padding makes the output larger than the input: like the pool2d forward fix (#15628), the output descriptor now uses the output depth, height and width instead of the input's.
+
 ### Known issues
 
 ### Upcoming changes

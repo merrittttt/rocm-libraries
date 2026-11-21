@@ -170,7 +170,7 @@ struct DevicePool3dFwd_NDHWC_NDHWC : public DevicePoolFwd<5,
         const index_t Wo_stride = output_ncdhw_stride[4];
 
         const auto out_grid_desc_n_do_ho_wo_c = make_naive_tensor_descriptor(
-            make_tuple(N, Di, Hi, Wi, C),
+            make_tuple(N, Do, Ho, Wo, C),
             make_tuple(No_stride, Do_stride, Ho_stride, Wo_stride, Co_stride));
 
         const auto out_grid_desc_reducemraw = transform_tensor_descriptor(
