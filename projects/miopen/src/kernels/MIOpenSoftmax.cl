@@ -408,6 +408,9 @@ __kernel void SoftmaxForward(global _FLOAT* x,
 
             y[y_gidx] = value;
         }
+        // l_helper[0] holds this vector's sum; let every wave read it before the
+        // next iteration overwrites l_helper.
+        barrier(CLK_LOCAL_MEM_FENCE);
         (void)s;
     }
 
@@ -837,6 +840,9 @@ __kernel void SoftmaxBackward(global _FLOAT* y,
 
             dx[dx_gidx] = value;
         }
+        // l_helper[0] holds this vector's dot product; let every wave read it before
+        // the next iteration overwrites l_helper.
+        barrier(CLK_LOCAL_MEM_FENCE);
         (void)s;
     }
 
